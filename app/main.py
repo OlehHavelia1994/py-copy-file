@@ -5,23 +5,11 @@ def copy_file(command: str) -> None:
     copy_list = command.strip().split()
     if len(copy_list) != 3 or copy_list[0] != "cp":
         return None
-    source = copy_list[1]
-    if not os.path.exists(source):
+    source_file_name = copy_list[1]
+    if not os.path.exists(source_file_name):
         return None
-    dest = copy_list[-1]
-    if source == dest:
+    destination_file_name = copy_list[-1]
+    if source_file_name == destination_file_name:
         return None
-    with open(source, "r") as r:
-        content = r.read()
-    with open(dest, "w") as w:
-        w.write(content)
-
-
-with open("file.txt", "w") as f:
-    f.write("Hello")
-try:
-    copy_file("cp file.txt new_file.txt")
-except FileNotFoundError as e:
-    print(e)
-
-print(open("file.txt").read() == open("new_file.txt").read())
+    with open(source_file_name, "r") as source_file, open(destination_file_name, "w") as destination_file:
+        destination_file.write(source_file.read())
