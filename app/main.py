@@ -11,5 +11,6 @@ def copy_file(command: str) -> None:
     destination_file_name = copy_list[-1]
     if source_file_name == destination_file_name:
         return None
-    with open(source_file_name, "r") as source_file, open(destination_file_name, "w") as destination_file:
+    with (open(source_file_name, "r") as source_file,
+          open(destination_file_name, "w") as destination_file):
         destination_file.write(source_file.read())
